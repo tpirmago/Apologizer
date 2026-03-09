@@ -1,17 +1,21 @@
 /* ─── Layout ───────────────────────────────────────────── */
 .app {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 3rem 1.5rem 5rem;
   background: #efefef;
   color: #1a1a1a;
+  box-sizing: border-box;
 }
 
 .app-header {
   text-align: center;
   margin-bottom: 3rem;
+  width: 100%;
+  max-width: 640px;
 }
 
 .app-header h1 {
@@ -26,6 +30,7 @@
   color: #999;
   font-size: 1.05rem;
   margin: 0;
+  word-break: break-word;
 }
 
 .app-main {
@@ -152,7 +157,7 @@
   cursor: pointer;
   transition: color 0.15s;
   user-select: none;
-  width: 20px;
+  flex: 1;
   text-align: center;
 }
 
@@ -163,7 +168,9 @@
 
 .severity-tick-label {
   font-size: 0.75rem;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
   color: #666;
 }
 
@@ -547,5 +554,76 @@
   }
   .severity-tick.active {
     color: #aab4ff;
+  }
+}
+
+/* ─── Mobile (≤ 480px) ──────────────────────────────────── */
+@media (max-width: 480px) {
+  .app {
+    padding: 1.75rem 1rem 3rem;
+  }
+
+  .app-header {
+    margin-bottom: 2rem;
+  }
+
+  .app-header h1 {
+    font-size: 2.4rem;
+  }
+
+  .goose-mascot {
+    width: 80px;
+  }
+
+  .severity-tick {
+    width: auto;
+    flex: 1;
+  }
+
+  .severity-tick-label {
+    font-size: 0.65rem;
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+  }
+
+  .apology-text {
+    font-size: 1rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .option-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .tone-selector .option-group {
+    justify-content: center;
+  }
+
+  .tone-btn {
+    flex: 1 1 calc(50% - 0.25rem);
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .btn-generate {
+    font-size: 0.95rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .modal {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+}
+
+/* ─── Desktop (≥ 1280px) ─────────────────────────────────── */
+@media (min-width: 1280px) {
+  .app-main {
+    max-width: 720px;
+  }
+
+  .app-header h1 {
+    font-size: 4rem;
   }
 }
