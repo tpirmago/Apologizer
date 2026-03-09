@@ -1,73 +1,97 @@
-# React + TypeScript + Vite
+# Apologizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src="frontend/public/goose-judge.png" alt="Apologizer goose" width="100" />
 
-Currently, two official plugins are available:
+Apologizer is a small AI-powered web app that helps you turn awkward situations into better apologies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Describe what happened, choose how badly you messed up, pick a tone — and the app will generate a short message you can actually send.
 
-## React Compiler
+There's also a slightly embarrassed goose that reacts to how bad the situation is.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Generate short, natural apology messages with AI
+- Choose severity, category, and tone
+- Rewrite the apology (shorter, funnier, more sincere, etc.)
+- Interactive goose mascot that reacts to your level of guilt
+- Session recovery if you accidentally refresh the page
+- Copy-ready messages you can send immediately
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## How it works
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The frontend sends a request to a small backend proxy, which calls the OpenAI API to generate the apology.
+
+```
+Frontend (React)
+      ↓
+Backend proxy (Node / Express)
+      ↓
+OpenAI API
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The API key is stored only on the backend.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The app does not store user data — only the current session is kept in localStorage.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Tech Stack
+
+**Frontend**
+- React
+- TypeScript
+- Vite
+
+**Backend**
+- Node.js
+- Express
+
+**AI**
+- OpenAI API
+
+---
+
+## Running locally
+
+Clone the repo:
+
+```bash
+git clone <repo-url>
 ```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env` file in the `backend` folder:
+
+```
+OPENAI_API_KEY=your_api_key_here
+```
+
+Start the backend:
+
+```bash
+npm run server
+```
+
+Start the frontend:
+
+```bash
+npm run dev
+```
+
+> **Note:** This project uses the OpenAI API, so you'll need your own API key and billing enabled on the OpenAI platform.
+
+---
+
+## <img src="frontend/public/goose-judge.png" alt="goose" width="28" style="vertical-align:middle" /> Why the goose?
+
+Because apologizing is awkward.
+And awkward things deserve a slightly embarrassed goose.
