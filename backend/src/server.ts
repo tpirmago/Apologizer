@@ -6,8 +6,12 @@ import { generateApologyRouter } from './routes/generateApology.js'
 const app = express()
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001
 
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : ['http://localhost:3000']
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: allowedOrigins,
   methods: ['POST'],
   allowedHeaders: ['Content-Type']
 }))
