@@ -15,7 +15,9 @@ export async function generateApology(
   })
   if (!res.ok) {
     const errorBody = await res.text()
-    throw new Error(`Failed to generate apology: ${errorBody}`)
+    let message = errorBody
+    try { message = JSON.parse(errorBody).error ?? errorBody } catch { /* use raw text */ }
+    throw new Error(message || `Request failed (${res.status})`)
   }
   return res.json() as Promise<GenerateApologyResponse>
 }

@@ -8,7 +8,11 @@
     "dev:backend": "npm run dev --prefix backend",
     "install:all": "npm install && npm install --prefix frontend && npm install --prefix backend"
   },
+  "dependencies": {
+    "openai": "^4.72.0"
+  },
   "devDependencies": {
+    "@vercel/node": "^5.0.0",
     "concurrently": "^9.0.0"
   }
 }

@@ -4,7 +4,7 @@ import cors from 'cors'
 import { generateApologyRouter } from './routes/generateApology.js'
 
 const app = express()
-const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3002
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',')
