@@ -9,6 +9,7 @@ import { generateApology }  from './services/api'
 import { saveSession, loadSession, clearSession } from './utils/sessionStorage'
 import type { ApologySession, Category, Severity, Tone, RewriteInstruction } from './types'
 import './App.css'
+import { Analytics } from "@vercel/analytics/react"
 
 const DEFAULT_SESSION: ApologySession = {
   situation: '',
@@ -189,6 +190,8 @@ export default function App() {
             loading={loading}
           />
         )}
+
+        <Analytics />
       </main>
 
       <footer className="app-footer">
